@@ -1,0 +1,112 @@
+#== FUNCTION 1 ==
+
+def CodonList(rna):
+    codons=[]
+    i=0
+    for i in range(0,len(rna),3):
+        codon=rna[i:i+3]
+        codons.append(codon)
+    return codons
+
+#EXAMPLE:
+dna1="AUGGGAAGC"
+codon_list=CodonList(dna1)
+print codon_list
+
+#The function would return:
+#   ["AUG","GGA","AGC"]
+
+#---------------------------------------------------------------------------------
+#== FUNCTION 2 ==
+
+def NmerList(dna):
+    dna=dna.upper()
+    dna=dna.strip()
+    dna=dna.replace(' ','')
+    codons=[]
+    i=0
+    for i in range(0,len(dna),4):
+        #print i
+        codon=dna[i:i+4]
+        codons.append(codon)
+    return codons
+
+#EXAMPLE:
+#dna2="AaUGGcGAAgcG \n"
+dirtyDNA="  aagctACGTGGGTgactt  TGCCGATttAAGCCTGGGAA\n "
+nmer_list=NmerList(dirtyDNA)
+print nmer_list
+
+#The function would return:
+#   ["AAUG","GCGA","AGCG"]
+
+#---------------------------------------------------------------------------------
+#== FUNCTION 3 ==
+def NmerCountGC(rna):
+    GC0count=0
+    GC1count=0
+    GC2count=0   
+    for i in rna[0]:
+        if i=='G' or i=='C':
+            GC0count=GC0count+1
+    print rna[0], '\t', GC0count
+    for i in rna[1]:
+        if i=='G' or i=='C':
+            GC1count=GC1count+1
+    print rna[1], '\t', GC1count
+    for i in rna[2]:
+        if i=='G' or i=='C':
+            GC2count=GC2count+1
+    print rna[2], '\t', GC2count
+    GCcount=GC0count+GC1count+GC2count
+    return GCcount         
+ 
+#EXAMPLE:
+#nmer_tablist=["AAUG","AGCG","GCUA"]
+#GCcount=NmerCountGC(nmer_tablist)
+#print GCcount
+
+#The function would print a table:
+#   AAUG    1
+#   AGCG    3
+#   GCUA    2
+
+#The function would return:
+#   6
+
+#---------------------------------------------------------------------------------
+#== FUNCTION 4 ==
+def NmerPercentGC(rna):
+    GC0count=0
+    GC1count=0
+    GC2count=0
+    for i in rna[0]:
+        if i=='G' or i=='C':
+            GC0count=GC0count+1
+            GC0percent=(float(GC0count)/len(rna[0]))*100
+    print rna[0],'\t',GC0percent
+    for i in rna[1]:
+        if i=='G' or i=='C':
+            GC1count=GC1count+1
+            GC1percent=(float(GC1count)/len(rna[1]))*100
+    print rna[1],'\t',GC1percent
+    for i in rna[2]:
+        if i=='G' or i=='C':
+            GC2count=GC2count+1
+            GC2percent=(float(GC2count)/len(rna[2]))*100
+    print rna[2],'\t',GC2percent
+    GCpercent=(GC0percent+GC1percent+GC2percent)/len(rna)
+    return GCpercent  
+
+#EXAMPLE:
+#nmer_tablist=["AAUG","AGCG","GCUA"]
+#GCpercent=NmerPercentGC(nmer_tablist)
+#print GCpercent
+
+#The function would print:
+#   AAUG    25.0
+#   AGCG    75.0
+#   GCUA    50.0
+
+#The function would return:
+#   50.0
